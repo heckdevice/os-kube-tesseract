@@ -5,8 +5,8 @@
 </head>
 #
 #
-<h1>CLI tool for decomposing a Openshift template file into Service (svc) and ReplicationController (rc) kubernetes file
-<h1>
+<h3>CLI tool for decomposing a Openshift template file into Service (svc) and ReplicationController (rc) kubernetes file
+</h3>
 Watch this space to have a composition option where in multiple Kubernetes files can be stashed into a Openshift template file
 
 
