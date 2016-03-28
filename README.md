@@ -14,8 +14,9 @@ Watch this space to have a composition option where in multiple Kubernetes files
 *************************************************************************************************************
  - Supports only Id field filtering while converting from OS Template to Kubernetes Service(s), Pod(s)and ReplicationController files
 #
-Note : As of now my template files are mostly a simply wrapper around kubernetes files so not much of attributes needs filtering.
 #
+**
+Note : As of now my template files are mostly a simply wrapper around kubernetes files so not much of attributes needs filtering.
 *************************************************************************************************************
 
 Built on using :
