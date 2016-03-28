@@ -1,5 +1,5 @@
 #os-kube-tesseract
-
+#<meta name='keywords' content='openshift, kubernetes, transform templates'>
 CLI tool for decomposing a Openshift template file into Service (svc) and ReplicationController (rc) kubernetes file
 
 Watch this space to have a composition option where in multiple Kubernetes files can be stashed into a Openshift template file
