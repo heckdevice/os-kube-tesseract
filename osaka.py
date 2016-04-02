@@ -24,48 +24,40 @@ def parseCLI(argv):
             osTemplateFilename = arg
             print('*' * 50 + "Decomposing Openshift Template file %s" %
                   osTemplateFilename + '*' * 50)
-            output = decompose(osTemplateFilename)
+            output = decomposeRedux(osTemplateFilename)
             print("%s template is decomposed into %s kubernetes files" %
                   (osTemplateFilename, output))
 
 
-def decompose(osTemplateFilename):
+def decomposeRedux(osTemplateFilename):
     output = []
     with open(osTemplateFilename, 'r') as f:
         for data in yaml.load_all(f, Loader=yaml.Loader):
-            # print(data)
-            for key, value in data.items():
-                #print("key %s value %s" % (key, value))
-                # print(filename)
-                if key == 'objects':
-                    for obj in value:
-                        # print(obj)
-                        filename = 'kube-' + data['metadata']['name']
-                        fileType = None
-                        outValue = {}
-                        for objkey, objval in obj.items():
-                            if objkey == 'kind' and objval == 'Service':
-                                fileType = 'svc'
-                                outValue[objkey] = objval
-                            elif objkey == 'kind' and objval == 'ReplicationController':
-                                fileType = 'rc'
-                                outValue[objkey] = objval
-                            elif objkey == 'kind' and objval == 'Pod':
-                                fileType = 'po'
-                                outValue[objkey] = objval
-                            elif objkey == 'id':
-                                filename = filename + '-' + objval
-                            else:
-                                # print("Adding key val %s , %s" %
-                                #       (objkey, objval))
-                                outValue[objkey] = objval
-                        filename = filename + '-' + fileType + '.yaml'
-                        with open(filename, 'w') as outfile:
-                            outfile.write(
-                                yaml.dump(outValue, default_flow_style=False))
-                            output.append(filename)
+            objVals = data['objects']
+            for obj in objVals:
+                filename = 'kube-' + data['metadata']['name']
+                fileType = None
+                outValue = {}
+                for objkey, objval in obj.items():
+                    if objkey == 'kind' and objval == 'Service':
+                        fileType = 'svc'
+                        outValue[objkey] = objval
+                    elif objkey == 'kind' and objval == 'ReplicationController':
+                        fileType = 'rc'
+                        outValue[objkey] = objval
+                    elif objkey == 'kind' and objval == 'Pod':
+                        fileType = 'po'
+                        outValue[objkey] = objval
+                    elif objkey == 'id':
+                        filename = filename + '-' + objval
+                    else:
+                        outValue[objkey] = objval
+                filename = filename + '-' + fileType + '.yaml'
+                with open(filename, 'w') as outfile:
+                    outfile.write(
+                        yaml.dump(outValue, default_flow_style=False))
+                    output.append(filename)
     return output
-
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
