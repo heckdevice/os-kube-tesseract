@@ -5,7 +5,7 @@
 </head>
 #
 #
-<h3>CLI tool for decomposing a Openshift template file into Service (svc) and ReplicationController (rc) kubernetes file
+<h3>CLI tool for decomposing a Openshift template file into Services (svc), Pods (po) and ReplicationControllers (rc) file
 </h3>
 
 Watch this space to have a composition option where in multiple Kubernetes files can be stashed into a Openshift template file
@@ -13,7 +13,7 @@ Watch this space to have a composition option where in multiple Kubernetes files
  - Supports only Id field filtering while converting from OS Template to Kubernetes Service(s), Pod(s)and ReplicationController files
 
 *****
-Note : As of now my template files are mostly a simply wrapper around kubernetes files so not much of attributes needs filtering
+Note : As of now my template files are mostly a simple wrapper around kubernetes files, so not much of attributes needs filtering
 ******
 Built on using :
 #
